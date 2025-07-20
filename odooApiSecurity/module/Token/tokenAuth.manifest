@@ -1,0 +1,77 @@
+{
+    'name': 'Token Based Authentication',
+    'version': '17.0.1.0.0',
+    'category': 'API',
+    'summary': 'Token tabanlı API authentication sistemi',
+    'description': """
+Token Based Authentication
+==========================
+
+Bu modül Odoo API'ları için güvenli token tabanlı authentication sistemi sağlar.
+
+Özellikler:
+-----------
+* JWT token generation ve validation
+* API key management sistemi
+* User-specific token assignment
+* Token expiry ve refresh mechanisms
+* Scope-based access control
+* Bearer token authentication
+* Rate limiting entegrasyonu
+* Comprehensive audit logging
+
+Güvenlik:
+---------
+* HMAC SHA-256 token signing
+* Configurable token expiry
+* IP address validation
+* Request logging ve monitoring
+* Brute force protection
+
+Installation:
+-------------
+1. Modülü custom addons dizinine kopyalayın
+2. Odoo'yu restart edin
+3. Apps menüsünden modülü yükleyin
+4. Ayarları konfigüre edin
+
+Usage:
+------
+API token oluşturmak için:
+Settings > Technical > API Management > API Tokens
+
+API çağrısı yapmak için:
+Authorization: Bearer YOUR_TOKEN_HERE
+""",
+    'author': 'Odoo API Security Team',
+    'website': 'https://github.com/username/odoo-api-security',
+    'license': 'MIT',
+    'depends': [
+        'base',
+        'web'
+    ],
+    'external_dependencies': {
+        'python': [
+            'PyJWT',
+            'cryptography'
+        ]
+    },
+    'data': [
+        'security/ir.model.access.csv',
+        'security/security.xml',
+        'data/api_config_data.xml',
+        'views/api_token_views.xml',
+        'views/api_key_views.xml',
+        'views/api_log_views.xml',
+        'views/menu_views.xml'
+    ],
+    'demo': [
+        'demo/demo_tokens.xml'
+    ],
+    'qweb': [],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+    'post_init_hook': 'post_init_hook',
+    'uninstall_hook': 'uninstall_hook'
+}
